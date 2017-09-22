@@ -11,7 +11,7 @@
                 background-color: #c0d4df;
             }
             .content{
-                width: 75%;
+                width: 90%;
                 margin: 50px auto;
             }
             .cel{
@@ -42,17 +42,26 @@
             .input-interface{
                 width: 80px;
             }
-            .content-interface{
+            #painel-interface{
+                height: 600px; 
+            }
+            #content-interface{
                 float: left;
-                width: 125px;
-                margin-right: 15px;
+                width: 900px;
+                height: 600px;
                 border-right: 1px solid #c0d4df;
             }
-            .content-interface .btn{
+            #content-interface .btn{
                 margin-top: 15px;
             }
              .clear{
                 clear: both;
+            }
+            .controllers{
+                background-color: #fff;
+                width: 75px;
+                height: 600px;
+                display: inline-block;
             }
         </style>
         <title>Simulador de Inteligência Artificial</title>
@@ -67,6 +76,11 @@
                 <div class="well">                   
                     <div id="painel-interface">
                        <div id="content-interface"></div> 
+                       <div class="controllers">
+                           <button type="button" onclick="ativarEstadoMover()">Mover</button>
+                           <button type="button"  onclick="ativarEstadoCriacaoMuro()">Muro</button>
+                           <button type="button"   onclick="ativarEstadoCriacaoGuerreiro()">Guereiro</button>
+                       </div>
                     </div>
                 </div>
             </div>
@@ -75,6 +89,7 @@
         <script src="configure.js"></script>
         <script src="init.js"></script>
         <script src="render_animate.js"></script>
+        <script src="interface.js"></script>
 
 
         <script type="text/javascript">

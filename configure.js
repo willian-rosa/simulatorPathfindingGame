@@ -21,3 +21,5 @@ var plane,
 	objects = [];
 
 
+//estado do jogo
+var estadoJogo;
