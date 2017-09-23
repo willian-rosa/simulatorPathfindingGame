@@ -66,6 +66,11 @@
         </style>
         <title>Simulador de Inteligência Artificial</title>
         <script src="three.min.js"></script>
+
+
+        <script src="js/DDSLoader.js"></script>
+        <script src="js/MTLLoader.js"></script>
+        <script src="js/OBJLoader.js"></script>
     </head>
     <body>
 
@@ -78,8 +83,8 @@
                        <div id="content-interface"></div> 
                        <div class="controllers">
                            <button type="button" onclick="ativarEstadoMover()">Mover</button>
-                           <button type="button"  onclick="ativarEstadoCriacaoMuro()">Muro</button>
-                           <button type="button"   onclick="ativarEstadoCriacaoGuerreiro()">Guereiro</button>
+                           <button type="button"  onclick="ativarEstadoCriacaoMuro()">+ Muro</button>
+                           <button type="button"   onclick="ativarEstadoCriacaoGuerreiro()">+ Guereiro</button>
                        </div>
                     </div>
                 </div>

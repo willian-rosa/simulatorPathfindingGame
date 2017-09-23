@@ -8,4 +8,5 @@ function ativarEstadoCriacaoMuro() {
 
 function ativarEstadoCriacaoGuerreiro() {
 	estadoJogo = null;
+	addWarrior();
 }

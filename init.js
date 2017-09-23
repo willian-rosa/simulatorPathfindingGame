@@ -76,8 +76,8 @@ function init(){
     obstaclesGeo = new THREE.BoxGeometry( 50, 50, 50 );
     obstaclesMaterial = new THREE.MeshLambertMaterial( { color: 0xaaaaaa, map: new THREE.TextureLoader().load( "textures/wall.png" ) } );
 
-
-
+    createEarth();
+    
     document.getElementById('content-interface').addEventListener( 'mousedown', onDocumentMouseDown, false );
 
 
