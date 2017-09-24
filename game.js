@@ -51,48 +51,19 @@ function addObstacle(intersect){
 }
 
 function addWarrior(){
-    var textureWarrior = new THREE.Texture();
-
-        var loaderImageWarrior = new THREE.ImageLoader();
-        loaderImageWarrior.load( 'models/warrior.png', function ( image ) {
-
-            textureWarrior.image = image;
-            textureWarrior.needsUpdate = true;
-
-        } );
-
-        var loaderWarrior = new THREE.OBJLoader();
-
-        // load a resource
-         loaderWarrior.load(
-            // resource URL
-            'models/warrior.obj',
-            // Function when resource is loaded
-            function ( object ) {
 
 
-                object.traverse( function ( child ) {
+    var warrior = objectWarrior.clone();
+    warrior.children[0].name = "warrior_"+movingObject.length;
 
-                    if ( child instanceof THREE.Mesh ) {
-                        child.material.map = textureWarrior;
+    scene.add( warrior );
 
-                    }
+    var movingObj = new MovingObject(warrior);
+    movingObject.push(movingObj);
+    objects.push(warrior)
 
-                } );
-
-                object.scale.set(0.3, 0.3, 0.3);
-                object.rotateX(Math.PI/2);
-                object.position.set(-475, 475, 0);
-
-                scene.add( object );
-                objects.push( object );
-
-                render();
-
-            }
-        );
+    render(false);
 }
-
 
 function onDocumentMouseDown( event ) {
 	updateRaycaster(event)
@@ -109,11 +80,40 @@ function onDocumentMouseDown( event ) {
 
 			if(estadoJogo === 'criacaoMuro'){
 				addObstacle(intersect);
-			}
+			}else if(estadoJogo == 'selecionar'){
+                for(var key in movingObject){
+                    var obj = movingObject[key];
+                    if(obj.selected){
+                        obj.dest =  intersect.point;
+                        obj.enabled = true;
+                    }
+                }
 
+            }
 
-			render();
-		}
+			render(false);
+
+		}else{
+
+            if(intersect.object.name == 'group_warrior'){
+
+                var movingObjSelect = null;
+
+                for (var key in movingObject) {
+                    var movingObj = movingObject[key];
+                    movingObj.selected = false;
+
+                    if(movingObj.object === intersect.object){
+                        movingObjSelect = movingObj;
+                    }
+                }
+
+                if(movingObjSelect){
+                    movingObjSelect.selected = true;
+                    estadoJogo = 'selecionar'
+                }
+            }
+        }
 	}
 
 

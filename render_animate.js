@@ -1,4 +1,17 @@
-function render(){
+function render(updateObjects){
+
+	if(updateObjects){
+
+		for(var key in movingObject){
+			var obj = movingObject[key];
+
+			if(obj.enabled){
+				obj.run();
+			}
+		}
+
+	}
+
     renderer.render( scene, camera );
 }
 
@@ -7,7 +20,7 @@ function animate() {
         //     requestAnimationFrame( animate );
         // }
 
-        render();
+        render(true);
 
 }
 

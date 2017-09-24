@@ -25,10 +25,7 @@ function init(){
     scene.add( directionalLight );
 
 
-
-
-
-    ////////////////////////////////////////////////////////////////////////////////////////
+   ////////////////////////////////////////////////////////////////////////////////////////
 
 
     //plano background
@@ -74,13 +71,65 @@ function init(){
 
     //Criando dados 
     obstaclesGeo = new THREE.BoxGeometry( 50, 50, 50 );
-    obstaclesMaterial = new THREE.MeshLambertMaterial( { color: 0xaaaaaa, map: new THREE.TextureLoader().load( "textures/wall.png" ) } );
+    
 
     createEarth();
+    loadComponents()
     
     document.getElementById('content-interface').addEventListener( 'mousedown', onDocumentMouseDown, false );
 
 
     render();
    
+}
+
+
+function loadComponents(){
+    obstaclesMaterial = new THREE.MeshLambertMaterial( { color: 0xaaaaaa, map: new THREE.TextureLoader().load( "textures/wall.png" ) } );
+
+
+
+    var textureWarrior = new THREE.Texture();
+
+    var loaderImageWarrior = new THREE.ImageLoader();
+        loaderImageWarrior.load( 'models/warrior.png', function ( image ) {
+
+        textureWarrior.image = image;
+        textureWarrior.needsUpdate = true;
+
+    } );
+
+    var loaderWarrior = new THREE.OBJLoader();
+
+    // load a resource
+     loaderWarrior.load(
+        // resource URL
+        'models/warrior.obj',
+        // Function when resource is loaded
+        function ( object ) {
+
+            object.traverse( function ( child ) {
+
+                if ( child instanceof THREE.Mesh ) {
+                    child.material.map = textureWarrior;
+
+                }
+
+            } );
+
+
+            object.scale.set(0.3, 0.3, 0.3);
+            object.rotateX(Math.PI/2);
+
+            var group = new THREE.Mesh( obstaclesGeo,  new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 }));
+            group.add(object);
+            group.position.set(-475, 475, 1);
+            group.name = "group_warrior";
+
+            objectWarrior = group;
+
+        }
+    );
+
+
 }

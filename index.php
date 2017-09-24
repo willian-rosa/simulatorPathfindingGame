@@ -68,8 +68,6 @@
         <script src="three.min.js"></script>
 
 
-        <script src="js/DDSLoader.js"></script>
-        <script src="js/MTLLoader.js"></script>
         <script src="js/OBJLoader.js"></script>
     </head>
     <body>
@@ -91,6 +89,7 @@
             </div>
       </div>
         <script src="game.js"></script>
+        <script src="MovingObject.js"></script>
         <script src="configure.js"></script>
         <script src="init.js"></script>
         <script src="render_animate.js"></script>

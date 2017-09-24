@@ -21,5 +21,9 @@ var plane,
 	objects = [];
 
 
+//Load
+var obstaclesMaterial, movingObject = [];
+
+
 //estado do jogo
 var estadoJogo;
