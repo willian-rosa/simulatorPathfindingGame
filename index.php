@@ -80,7 +80,6 @@
                     <div id="painel-interface">
                        <div id="content-interface"></div> 
                        <div class="controllers">
-                           <button type="button" onclick="ativarEstadoMover()">Mover</button>
                            <button type="button"  onclick="ativarEstadoCriacaoMuro()">+ Muro</button>
                            <button type="button"   onclick="ativarEstadoCriacaoGuerreiro()">+ Guereiro</button>
                        </div>

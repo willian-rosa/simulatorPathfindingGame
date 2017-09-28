@@ -94,9 +94,12 @@ function onDocumentMouseDown( event ) {
 			if(estadoJogo === 'criacaoMuro'){
 				addObstacle(intersect);
 			}else if(estadoJogo == 'selecionar'){
+                //quando clica no para mover o warrior
                 for(var key in movingObject){
                     var obj = movingObject[key];
                     if(obj.selected){
+                        //pega o warrior selecionado e seta o novo destino
+                        obj.clearLists(gridMovement)
                         obj.dest =  intersect.point.clone();
                         obj.dest.divideScalar(50).floor().multiplyScalar(50).addScalar(25);
                         obj.enabled = true;
@@ -109,6 +112,7 @@ function onDocumentMouseDown( event ) {
 
 		}else{
 
+            //quando clica no warrior, selecionando para move-lo
             if(intersect.object.name == 'group_warrior'){
 
                 var movingObjSelect = null;

@@ -132,9 +132,11 @@ var MovingObject = function(object){
 		return adjacents;
 	}
 
-	//TODO lista aberta terá o objeto e dentro o vertice {custo = 10, vertice={vertices}}
-
-	//this._
+	this.clearLists = function(grid){
+		this._listOpen = [];
+		this._listClose = [];
+		this._listClose.push(grid[this.vector.i][this.vector.j]);
+	}
 
 
 
