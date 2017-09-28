@@ -29,13 +29,19 @@ function createEarth(){
     
     var obstacle = new THREE.Mesh( earthGeo, earthMaterial );
     obstacle.position.set(-475, 425, 1);
-    objects.push(obstacle)
+    objects.push(obstacle);
     scene.add( obstacle );
     
     var obstacle = new THREE.Mesh( earthGeo, earthMaterial );
     obstacle.position.set(-425, 425, 1);
-    objects.push(obstacle)
+    objects.push(obstacle);
     scene.add( obstacle );
+}
+
+function getValueScalar(a){
+    var x = (((a-25)/50)/0.02);
+    return ((500-x)/50)-1;
+
 }
 
 function addObstacle(intersect){
@@ -44,6 +50,13 @@ function addObstacle(intersect){
     obstacle.position.copy( intersect.point ).add( intersect.face.normal );
 
     obstacle.position.divideScalar(50).floor().multiplyScalar(50).addScalar(25);
+
+    var i = getValueScalar(obstacle.position.y);
+    var j = getValueScalar(obstacle.position.x*-1);
+
+    gridMovement[i][j].dirty = true;
+
+
 
     objects.push(obstacle)
 
@@ -84,7 +97,8 @@ function onDocumentMouseDown( event ) {
                 for(var key in movingObject){
                     var obj = movingObject[key];
                     if(obj.selected){
-                        obj.dest =  intersect.point;
+                        obj.dest =  intersect.point.clone();
+                        obj.dest.divideScalar(50).floor().multiplyScalar(50).addScalar(25);
                         obj.enabled = true;
                     }
                 }

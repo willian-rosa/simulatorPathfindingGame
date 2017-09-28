@@ -18,7 +18,8 @@ var loader = new THREE.TextureLoader();
 var plane,
 	cubeGeo,
 	cubeMaterial,
-	objects = [];
+	objects = [],
+	gridMovement = [];
 
 
 //Load

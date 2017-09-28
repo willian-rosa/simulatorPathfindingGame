@@ -26,6 +26,25 @@ function init(){
 
 
    ////////////////////////////////////////////////////////////////////////////////////////
+   for (var i = 0; i < 20; i++) {
+        gridMovement[i] = [];
+        var y = (500 - ((i+1)*50));//line
+        for(var j = 0; j < 20; j++){
+
+            var  x = (((j)*50)-500);
+
+            var face = new THREE.Vector3( x, y, 0);
+
+            face.divideScalar(50).floor().multiplyScalar(50).addScalar(25);
+            face.dirty = false;
+
+
+            gridMovement[i][j] = face;
+        }
+   }
+
+
+   ////////////////////////////////////////////////////////////////////////////////////////
 
 
     //plano background
@@ -62,6 +81,9 @@ function init(){
     var line = new THREE.LineSegments( geometry, material );
     line.rotateX(Math.PI/2);
     scene.add( line );
+
+
+    bbb = line;
 
 
     var geometry = new THREE.PlaneBufferGeometry( 1000, 1000 );

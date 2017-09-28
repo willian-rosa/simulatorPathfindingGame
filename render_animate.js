@@ -6,7 +6,7 @@ function render(updateObjects){
 			var obj = movingObject[key];
 
 			if(obj.enabled){
-				obj.run();
+				obj.run(gridMovement);
 			}
 		}
 
