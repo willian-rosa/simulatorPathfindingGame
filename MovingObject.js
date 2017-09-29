@@ -29,7 +29,7 @@ var MovingObject = function(object){
 					this._listOpen.push(adjacent);
 				}
 			}
-			/*
+
 			for(var key in groupAdjacents.diagonal){
 
 				var adjacent = groupAdjacents.diagonal[key];
@@ -44,37 +44,39 @@ var MovingObject = function(object){
 					this._listOpen.push(adjacent);
 				}
 			}
-			*/
-
 
 			var lowerValue = this._listOpen[0];
-
 
 			for(var key in this._listOpen){
 
 				var item = this._listOpen[key];
 
-				if(this._listClose.indexOf(item) === -1 && lowerValue.distance > item.distance){
+				var isListClose = false;
+
+				for(var keyClose in this._listClose){
+					var itemClose = this._listClose[keyClose];
+					if(itemClose.x === item.x && itemClose.y === item.y){
+						isListClose = true
+					}
+
+				}
+
+				if(!isListClose && lowerValue.distance >= item.distance){
 					lowerValue = this._listOpen[key];
 				}
 			}
-
 
 			if(lowerValue.distance<50){
 				this.enabled = false;
 			}
 			
-			console.log(lowerValue.distance)
-
 			
 			this.vector.i = getValueScalar(lowerValue.y);
     		this.vector.j = getValueScalar(lowerValue.x*-1);
 			this.object.position.set(lowerValue.x, lowerValue.y, 0);
 			this._listClose.push(lowerValue);
 
-
-
-
+			this._listOpen = [];
 
 		}
 	}
