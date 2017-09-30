@@ -99,7 +99,6 @@ function onDocumentMouseDown( event ) {
                     var obj = movingObject[key];
                     if(obj.selected){
                         //pega o warrior selecionado e seta o novo destino
-                        obj.clearLists(gridMovement)
                         obj.dest =  intersect.point.clone();
                         obj.dest.divideScalar(50).floor().multiplyScalar(50).addScalar(25);
                         obj.enabled = true;
